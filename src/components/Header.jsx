@@ -1,12 +1,19 @@
+import { useContext } from 'react';// *
+import { TodoContext } from '../contexts/TodoContext';// *
 import { FaHome,FaSearch } from 'react-icons/fa';
 import { useState } from 'react';
-export function Header({onChangeSearch}) {
+
+// Function Component
+export function Header() {
+    // React HOOK
+    const sharedObj = useContext(TodoContext);// *
+    const searchTodo = sharedObj.searchTodo // *
 
     const [searchValue,setSearchValue] = useState('')
 
     const handleChange = (e) =>{
         setSearchValue(e.target.value)
-        onChangeSearch(e.target.value)
+        searchTodo(e.target.value) // *edit
     }
     return (
         <header className='header'>

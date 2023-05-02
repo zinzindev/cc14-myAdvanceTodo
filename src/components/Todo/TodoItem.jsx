@@ -1,5 +1,4 @@
 import styles from './TodoItem.module.scss';
-
 import { useState, useContext } from 'react';
 import { TodoContext } from '../../contexts/TodoContext';
 import { TodoForm } from './TodoForm';
@@ -14,7 +13,7 @@ export function TodoItem({ todo }) {
 
     // state
     const [isEdit, setIsEdit] = useState(false);
-
+ 
     const handleClickEditIcon = () => setIsEdit(true);
 
     const handleClickCheckBox = () => {
