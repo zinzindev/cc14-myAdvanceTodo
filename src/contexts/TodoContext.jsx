@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from 'react';
+import { useState, useEffect, createContext, useContext } from 'react';
 import * as TodoAPIServices from '../services/todoServices';
 import { getSevenDayRange } from '../utils/DateUtils';
 // Create Context => Context Object (NAME)  ใช้ได้ 2 ที่
@@ -141,3 +141,12 @@ function TodoContextProvider(props) {
 }
 
 export default TodoContextProvider;
+
+
+// Custom Hook 
+// export const useTodo = () => {
+//     // Consumer
+//     const sharedObj = useContext(TodoContext);
+//     return sharedObj;
+
+// };

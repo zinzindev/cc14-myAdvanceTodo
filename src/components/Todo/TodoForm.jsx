@@ -1,8 +1,7 @@
-import { useState,useContext } from 'react'; // #1
-import { TodoContext } from '../../contexts/TodoContext'; // #2
+import { useState } from 'react';
+import { useTodo } from '../../hooks/useTodo';
 import PropTypes from 'prop-types';
 import styles from './TodoForm.module.scss';
-
 
 TodoForm.propTypes = {
     textConfirm: PropTypes.string.isRequired,
@@ -17,9 +16,7 @@ TodoForm.propTypes = {
 
 export function TodoForm({ textConfirm, onSetShow, oldTodo }) {
     // Consumer : TodoContext
-    const {addTodo,editTodo} = useContext(TodoContext) //#3 consume
-
-    
+    const { addTodo, editTodo } = useTodo(); //#3 consume
     // State
     const [task, setTask] = useState(oldTodo?.task || '');
     const [error, setError] = useState(false);
@@ -55,7 +52,7 @@ export function TodoForm({ textConfirm, onSetShow, oldTodo }) {
             onSetShow(false);
         } else if (validTask && oldTodo) {
             // console.log(oldTodo.id)
-            editTodo(oldTodo.id, { ...oldTodo,task });
+            editTodo(oldTodo.id, { ...oldTodo, task });
             onSetShow(false);
         }
     };
@@ -88,7 +85,3 @@ export function TodoForm({ textConfirm, onSetShow, oldTodo }) {
         </form>
     );
 }
-
-
-
-
