@@ -1,17 +1,16 @@
 import styles from './TodoItem.module.scss';
-import { useState, useContext } from 'react';
-import { TodoContext } from '../../contexts/TodoContext';
+import { useState, useContext } from 'react'; // #1
+import { TodoContext } from '../../contexts/TodoContext'; // #2
 import { TodoForm } from './TodoForm';
 import { HiCheck, HiPencil, HiTrash } from 'react-icons/hi';
 import { convertDate } from '../../utils/DateUtils';
 
 export function TodoItem({ todo }) {
     // ** Consume
-    const sharedObj = useContext(TodoContext);
-    const editTodo = sharedObj.editTodo;
-    const deleteTodo = sharedObj.deleteTodo
+    const {editTodo,deleteTodo} = useContext(TodoContext); //#3
+ 
 
-    // state
+    // state 
     const [isEdit, setIsEdit] = useState(false);
  
     const handleClickEditIcon = () => setIsEdit(true);

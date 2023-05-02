@@ -1,12 +1,12 @@
 import styles from './TodoLists.module.scss';
-import { useContext } from 'react';
-import { TodoContext } from '../../contexts/TodoContext';
+import { useContext } from 'react'; // #1
+import { TodoContext } from '../../contexts/TodoContext'; //#2
 import { TodoItem } from './TodoItem';
 
 export function TodoLists() {
-    const sharedObj = useContext(TodoContext);
-    const todosFilter = sharedObj.todosFilter;
-	// const {todosFilter} = useContext(TodoContext);
+    const {todosFilter} = useContext(TodoContext); // #3
+   
+	
 
     return (
         <ul className={styles.todoList}>

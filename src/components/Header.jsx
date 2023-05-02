@@ -1,13 +1,13 @@
-import { useContext } from 'react';// *
-import { TodoContext } from '../contexts/TodoContext';// *
+import { useContext } from 'react';// *1
+import { TodoContext } from '../contexts/TodoContext';// *2
 import { FaHome,FaSearch } from 'react-icons/fa';
 import { useState } from 'react';
 
 // Function Component
 export function Header() {
     // React HOOK
-    const sharedObj = useContext(TodoContext);// *
-    const searchTodo = sharedObj.searchTodo // *
+    const {searchTodo} = useContext(TodoContext);// *3
+   
 
     const [searchValue,setSearchValue] = useState('')
 

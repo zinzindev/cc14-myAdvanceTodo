@@ -29,7 +29,7 @@ function TodoContextProvider(props) {
     useEffect(() => {
         fetchAllTodo();
     }, []);
-   
+
     // POST : Add
     const addTodo = async (task) => {
         try {
@@ -89,12 +89,12 @@ function TodoContextProvider(props) {
         try {
             // #1 Sync With External State/Service : Database
             // await axios.delete(`http://localhost:8080/todos/${todoId}`)
-            await TodoAPIServices.deleteTodo(todoId)
+            await TodoAPIServices.deleteTodo(todoId);
 
             // #2 Sync with Internal State : UI State
             const newTodoLists = todos.filter((todo) => todo.id !== todoId);
             setTodos(newTodoLists);
-            setTodosFilter(newTodoLists)
+            setTodosFilter(newTodoLists);
         } catch (error) {
             // #3 Error Handler eg. modal Error, Sweat Alert
             console.log(error.response.data);
@@ -102,7 +102,7 @@ function TodoContextProvider(props) {
     };
 
     // FILTER BY LISTS
-      const selectList = (selectedIndex) => {
+    const selectList = (selectedIndex) => {
         const [today, nextSevenDay] = getSevenDayRange();
         if (selectedIndex == 0) {
             setTodosFilter(todos);
@@ -115,24 +115,29 @@ function TodoContextProvider(props) {
         }
     };
 
-    // SEARCH TODO 
-       const searchTodo = (searchValue) => {
-        const newTodo = todos.filter((todo) => todo.task.toLowerCase().includes(searchValue.toLowerCase()));
+    // SEARCH TODO
+    const searchTodo = (searchValue) => {
+        const newTodo = todos.filter((todo) =>
+            todo.task.toLowerCase().includes(searchValue.toLowerCase())
+        );
         setTodosFilter(newTodo);
     };
 
-
-    const sharedObj = {
-        magic: 42,
-        todos: todos,
-        todosFilter: todosFilter,
-        addTodo: addTodo,
-        editTodo: editTodo,
-        deleteTodo: deleteTodo,
-        selectList:selectList,
-        searchTodo:searchTodo,
-    };
-    return <TodoContext.Provider value={sharedObj}>{props.children}</TodoContext.Provider>;
+    return (
+        <TodoContext.Provider
+            value={{
+                todos,
+                todosFilter,
+                addTodo,
+                editTodo,
+                deleteTodo,
+                selectList,
+                searchTodo,
+            }}
+        >
+            {props.children}
+        </TodoContext.Provider>
+    );
 }
 
 export default TodoContextProvider;
