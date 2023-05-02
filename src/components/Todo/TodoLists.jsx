@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { TodoContext } from '../../contexts/TodoContext';
 import { TodoItem } from './TodoItem';
 
-export function TodoLists({ onEditTodo, onDeleteTodo }) {
+export function TodoLists() {
     const sharedObj = useContext(TodoContext);
     const todosFilter = sharedObj.todosFilter;
 	// const {todosFilter} = useContext(TodoContext);
@@ -14,8 +14,6 @@ export function TodoLists({ onEditTodo, onDeleteTodo }) {
                 <TodoItem
                     todo={item}
                     key={item.id}
-                    onEditTodo={onEditTodo}
-                    onDeleteTodo={onDeleteTodo}
                 />
             ))}
         </ul>
