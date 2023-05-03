@@ -13,7 +13,7 @@ function RegisterPage() {
             <div className='flex-1 flex items-center justify-center'>
                 <div className='m-[100px] flex flex-col gap-8 w-[80%]'>
                     <h1 className='text-8xl font-bold mb-12'>Sign Up</h1>
-                    <form className='flex flex-col gap-4'></form>
+                    <form className='flex flex-col gap-4'>
                         <input
                             type='email'
                             placeholder='example@mail.com'
