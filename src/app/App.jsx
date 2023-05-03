@@ -5,9 +5,9 @@ import RegisterPage from '../pages/RegisterPage'
 import ProfilePage from '../pages/ProfilePage'
 
 function App() {
-    // return <TodoPage />;
+    return <TodoPage />;
     // return <LoginPage/>
-    return <RegisterPage/>
+    // return <RegisterPage/>
 }
 
 export default App;
