@@ -1,6 +1,21 @@
+import { useState } from 'react';
+import { useAuth } from '../hooks/useAuth';
 import { Link } from 'react-router-dom';
 import AuthPhoto from '../assets/auth.png';
 function LoginPage() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const { user, setUser, isAuth, setIsAuth } = useAuth();
+
+    const login = (e) => {
+        e.preventDefault();
+
+        if (email === 'codecamp@mail.com' && password === '1234') {
+            setIsAuth(true);
+            setUser({userId:20, firstName: "Job", lastName: "Keow"})
+        }
+    };
+
     return (
         <div className='h-screen flex bg-primary'>
             {/* Left */}
@@ -13,16 +28,20 @@ function LoginPage() {
             <div className='flex-1 flex items-center justify-center'>
                 <div className='m-[100px] flex flex-col gap-8 w-[80%]'>
                     <h1 className='text-8xl font-bold mb-12'>Login</h1>
-                    <form className='flex flex-col gap-4'>
+                    <form className='flex flex-col gap-4' onSubmit={login}>
                         <input
                             type='email'
                             placeholder='example@mail.com'
                             className='p-6 text-4xl outline-none rounded-lg border-2'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                         <input
                             type='password'
                             placeholder='password'
                             className='p-6 text-4xl outline-none rounded-lg border-2'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                         <button
                             type='submit'

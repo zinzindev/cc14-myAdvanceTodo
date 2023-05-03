@@ -1,11 +1,12 @@
 import './App.scss';
 import Router from '../routes/Router';
+import { useAuth } from '../hooks/useAuth';
 
 function App() {
+    // let isLogin  = true;
+    const { user, isAuth } = useAuth();
 
-    let isLogin  = true;
-
-    return <Router isAuthenticate={isLogin}/>
+    return <Router isAuthenticate={isAuth} />;
 }
 
 export default App;

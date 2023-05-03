@@ -2,14 +2,17 @@ import React from 'react';
 import { Header } from '../components/Header';
 import { SideBar } from '../components/SideBar';
 import { TodoContent } from '../components/Todo/TodoContent';
+import TodoContextProvider from '../contexts/TodoContext';
 
 function TodoPage() {
     return (
-        <div className='container'>
-            <Header />
-            <SideBar />
-            <TodoContent />
-        </div>
+        <TodoContextProvider>
+            <div className='container'>
+                <Header />
+                <SideBar />
+                <TodoContent />
+            </div>
+        </TodoContextProvider>
     );
 }
 
