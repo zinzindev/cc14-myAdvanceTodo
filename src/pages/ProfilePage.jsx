@@ -4,6 +4,7 @@ import { MenuAppBar as AppBar } from '../components/Common/AppBar';
 import { Box, Grid, Typography, Button } from '@mui/material';
 import { UserAvatar } from '../components/Common/UserAvatar';
 import { Input } from '../components/Common/Input';
+import { Link } from 'react-router-dom';
 
 class ProfilePage extends Component {
     render() {
@@ -12,8 +13,8 @@ class ProfilePage extends Component {
                 <AppBar />
                 <Box sx={{ flexGrow: 1 }}>
                     <Grid container spacing={8} sx={{ padding: 20 }}>
-                        <Grid item xs={10} alignSelf="flex-end">
-                            <Typography variant='h1' component='h6' >
+                        <Grid item xs={10} alignSelf='flex-end'>
+                            <Typography variant='h1' component='h6'>
                                 Edit Profile
                             </Typography>
                         </Grid>
@@ -53,28 +54,32 @@ class ProfilePage extends Component {
                             <Input name='date' type='date' error={false} />
                         </Grid>
                         <Grid item xs={6}>
-                            <Button
-                                fullWidth
-                                variant='contained'
-                                size='large'
-                                sx={{ background: '#db4c3f', padding: 2 }}
-                            >
-                                <Typography variant='h5' component='span'>
-                                    Edit Profile
-                                </Typography>
-                            </Button>
+                            <Link to='/todo'>
+                                <Button
+                                    fullWidth
+                                    variant='contained'
+                                    size='large'
+                                    sx={{ background: '#db4c3f', padding: 2 }}
+                                >
+                                    <Typography variant='h5' component='span'>
+                                        Edit Profile
+                                    </Typography>
+                                </Button>
+                            </Link>
                         </Grid>
                         <Grid item xs={6}>
-                            <Button
-                                fullWidth
-                                variant='contained'
-                                size='large'
-                                sx={{ backgroundColor: "#aaa" ,padding: 2 }}
-                            >
-                                <Typography variant='h5' component='span'>
-                                    Cancel
-                                </Typography>
-                            </Button>
+                            <Link to='/todo'>
+                                <Button
+                                    fullWidth
+                                    variant='contained'
+                                    size='large'
+                                    sx={{ backgroundColor: '#aaa', padding: 2 }}
+                                >
+                                    <Typography variant='h5' component='span'>
+                                        Cancel
+                                    </Typography>
+                                </Button>
+                            </Link>
                         </Grid>
                         <Grid item xs={12}>
                             <Button

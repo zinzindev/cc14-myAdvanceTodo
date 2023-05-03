@@ -1,8 +1,11 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { publicRoutes } from './publicRoutes';
+import { privateRoutes } from './privateRoutes';
 
-function Routes() {
-    const router = createBrowserRouter(publicRoutes);
+function Routes({isAuthenticate = false}) {
+
+    let appRoutes = isAuthenticate ? privateRoutes : publicRoutes
+    const router = createBrowserRouter(appRoutes);
 
     return <RouterProvider router={router} />;
 }
