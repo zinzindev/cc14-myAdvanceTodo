@@ -3,7 +3,7 @@ function LoginPage() {
     return (
         <div className='h-screen flex'>
           {/* Left */}
-            <div className='flex-1 hidden max-lg:flex justify-center items-center'>
+            <div className='flex-1 hidden lg:flex justify-center items-center'>
               <div className='p-16'>
                 <img src={AuthPhoto} alt="banner" className='w-full'/>
               </div>
