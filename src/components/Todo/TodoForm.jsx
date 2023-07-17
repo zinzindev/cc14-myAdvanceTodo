@@ -20,7 +20,7 @@ export function TodoForm({ textConfirm, onSetShow, oldTodo }) {
 	// Consumer : TodoContext
 	const { addTodo, editTodo } = useTodo(); //#3 consume
 
-	// State 
+	// State
 	const [task, setTask] = useState(oldTodo?.task || '');
 	const [error, setError] = useState(false);
 	const [date, setDate] = useState(null);
