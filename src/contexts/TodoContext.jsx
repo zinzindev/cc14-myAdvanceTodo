@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext } from 'react';
-import {getSevenDayRange} from '../utils/DateUtils.js'
+import { getSevenDayRange } from '../utils/DateUtils.js';
 import * as TodoAPIServices from '../services/todoServices.js';
 
 // CreateContext => Context object. (NAME)
@@ -124,18 +124,22 @@ function TodoContextProvider(props) {
 		setTodosFilter(newTodo);
 	};
 
-	const sharedObj = {
-		magic: 4,
-		todos: todos,
-		todosFilter: todosFilter,
-		addTodo: addTodo,
-		editTodo: editTodo,
-		deleteTodo: deleteTodo,
-		selectList: selectList,
-		searchTodo: searchTodo,
-	};
 	// return jsx
-	return <TodoContext.Provider value={sharedObj}>{props.children}</TodoContext.Provider>;
+	return (
+		<TodoContext.Provider
+			value={{
+				todos,
+				todosFilter,
+				addTodo,
+				editTodo,
+				deleteTodo,
+				selectList,
+				searchTodo,
+			}}
+		>
+			{props.children}
+		</TodoContext.Provider>
+	);
 }
 
 export default TodoContextProvider;
