@@ -1,6 +1,9 @@
-import { useState, useEffect, createContext } from 'react';
+import { useState, useEffect, createContext, useReducer } from 'react';
+
+import { FETCH_TODO } from '../reducers/todoReducer.js';
 import { getSevenDayRange } from '../utils/DateUtils.js';
 import * as TodoAPIServices from '../services/todoServices.js';
+import todoReducer, { INIT_TODO } from '../reducers/todoReducer.js';
 
 // CreateContext => Context object. (NAME)
 // #1 Provider: Wrapper Component => Share Data, Logic
@@ -12,15 +15,23 @@ function TodoContextProvider(props) {
 	const [todos, setTodos] = useState([]);
 	const [todosFilter, setTodosFilter] = useState([]);
 
+	// USE_REDUCER
+	// Param1: ใครสรุป? => ครูเต้ == todoReducer
+	// Param2: state ตั้งต้น
+	const [allTodoList, dispatch] = useReducer(todoReducer, INIT_TODO);
+	// Return1 arr[0]: State(init, updated)
+	// Return2 arr[1]: dispatch Fn : ใบสั่ง
+	console.log('STATE', allTodoList);
+	// console.log('d ispatchTodo', dispatch);
+
 	// GET : FETCH
 	async function fetchAllTodo() {
 		try {
 			// #1 : Sync with External Service
 			const response = await TodoAPIServices.getAllTodos();
 
-			// #2 : Sync with Internal State
-			setTodos(response.data.todos);
-			setTodosFilter(response.data.todos);
+			// #2-Alternative: ออกใบสั่ง
+			dispatch({ type: FETCH_TODO, payload: { todos: response.data.todos } });
 		} catch (error) {
 			// #3 Error handler
 			console.log(error.response.status);
@@ -128,8 +139,8 @@ function TodoContextProvider(props) {
 	return (
 		<TodoContext.Provider
 			value={{
-				todos,
-				todosFilter,
+				todos: allTodoList.todos,
+				todosFilter: allTodoList.todosFilter,
 				addTodo,
 				editTodo,
 				deleteTodo,
