@@ -1,9 +1,10 @@
 import { useState, useEffect, createContext, useReducer } from 'react';
 
-import { FETCH_TODO, ADD_TODO } from '../reducers/todoReducer.js';
+import { FETCH_TODO, ADD_TODO, EDIT_TODO, DELETE_TODO } from '../reducers/todoReducer.js';
 import { getSevenDayRange } from '../utils/DateUtils.js';
 import * as TodoAPIServices from '../services/todoServices.js';
 import todoReducer, { INIT_TODO } from '../reducers/todoReducer.js';
+import { type } from '@testing-library/user-event/dist/type/index.js';
 
 // CreateContext => Context object. (NAME)
 // #1 Provider: Wrapper Component => Share Data, Logic
@@ -68,21 +69,10 @@ function TodoContextProvider(props) {
 			// #1 Sync With External State/Service : Database
 			// const response = await axios.put(`http://localhost:8080/todos/${todoId}`, updateObj);
 			const response = await TodoAPIServices.updateTodo(updateObj);
-			const updatedTodoObj = response.data.todo;
+			// const updatedTodoObj = response.data.todo;
 
 			// #2  Sync with Internal State : UI State
-			const foundedIndex = todos.findIndex((todo) => todo.id === todoId);
-			if (foundedIndex !== -1) {
-				const newTodoLists = [...todos];
-				// newTodoLists[foundedIndex] = { ...newTodoLists[foundedIndex], ...updatedTodoObj };
-				newTodoLists[foundedIndex] = Object.assign(
-					{},
-					newTodoLists[foundedIndex],
-					updatedTodoObj
-				);
-				setTodos(newTodoLists);
-				setTodosFilter(newTodoLists);
-			}
+			dispatch({ type: EDIT_TODO, payload: { id: todoId, updatedTodo: response.data.todo } });
 		} catch (error) {
 			// #3 Error Handler eg. modal Error, Sweat Alert
 			console.log(error.response.data);
@@ -100,9 +90,10 @@ function TodoContextProvider(props) {
 			await TodoAPIServices.deleteTodo(todoId);
 
 			// #2 Sync with Internal State : UI State
-			const newTodoLists = todos.filter((todo) => todo.id !== todoId);
-			setTodos(newTodoLists);
-			setTodosFilter(newTodoLists);
+			dispatch({ type: DELETE_TODO, payload: { id: todoId } });
+			// const newTodoLists = todos.filter((todo) => todo.id !== todoId);
+			// setTodos(newTodoLists);
+			// setTodosFilter(newTodoLists);
 		} catch (error) {
 			// #3 Error Handler eg. modal Error, Sweat Alert
 			console.log(error.response.data);
