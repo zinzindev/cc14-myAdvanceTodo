@@ -1,10 +1,16 @@
-import { useState, useEffect, createContext, useReducer } from 'react';
+import { useEffect, createContext, useReducer } from 'react';
 
-import { FETCH_TODO, ADD_TODO, EDIT_TODO, DELETE_TODO } from '../reducers/todoReducer.js';
+import {
+	FETCH_TODO,
+	ADD_TODO,
+	EDIT_TODO,
+	DELETE_TODO,
+	SEARCH_TODO,
+	SELECT_TODO_LIST,
+} from '../reducers/todoReducer.js';
 import { getSevenDayRange } from '../utils/DateUtils.js';
 import * as TodoAPIServices from '../services/todoServices.js';
 import todoReducer, { INIT_TODO } from '../reducers/todoReducer.js';
-import { type } from '@testing-library/user-event/dist/type/index.js';
 
 // CreateContext => Context object. (NAME)
 // #1 Provider: Wrapper Component => Share Data, Logic
@@ -13,9 +19,6 @@ export const TodoContext = createContext();
 
 // Build Provider : Wrapper Component
 function TodoContextProvider(props) {
-	const [todos, setTodos] = useState([]);
-	const [todosFilter, setTodosFilter] = useState([]);
-
 	// USE_REDUCER
 	// Param1: ใครสรุป? => ครูเต้ == todoReducer
 	// Param2: state ตั้งต้น
@@ -103,23 +106,13 @@ function TodoContextProvider(props) {
 	// FILTER BY LISTS
 	const selectList = (selectedIndex) => {
 		const [today, nextSevenDay] = getSevenDayRange();
-		if (selectedIndex === 0) {
-			setTodosFilter(todos);
-		} else if (selectedIndex === 1) {
-			const newTodo = todos.filter((todo) => todo.date === today);
-			setTodosFilter(newTodo);
-		} else if (selectedIndex === 2) {
-			const newTodo = todos.filter((todo) => todo.date >= today && todo.date <= nextSevenDay);
-			setTodosFilter(newTodo);
-		}
+
+		dispatch({ type: SELECT_TODO_LIST, payload: { selectedIndex } });
 	};
 
 	// SEARCH TODO
 	const searchTodo = (searchValue) => {
-		const newTodo = todos.filter((todo) =>
-			todo.task.toLowerCase().includes(searchValue.toLowerCase())
-		);
-		setTodosFilter(newTodo);
+		dispatch({ type: SEARCH_TODO, payload: { searchText: searchValue } });
 	};
 
 	// return jsx
