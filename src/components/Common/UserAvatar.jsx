@@ -9,7 +9,7 @@ export function UserAvatar(props) {
 		<Avatar
             {...props} // alt='Zin'
 			src={props.src || defaultPhoto}
-			sx={{ width: '40', height: '40', cursor: 'poin ter', ...props.sx }}
+			sx={{ width: '40', height: '40', cursor: 'pointer', ...props.sx }}
 		/>
 	);
 }
