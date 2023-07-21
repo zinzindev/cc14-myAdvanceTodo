@@ -67,7 +67,7 @@ class ProfilePage extends Component {
 						<Grid item xs={6}>
 							<Button
 								fullWidth
-								variant='outlined'
+								variant='contained'
 								size='large'
 								sx={{ padding: 2, backgroundColor: '#aaa' }}
 							>
