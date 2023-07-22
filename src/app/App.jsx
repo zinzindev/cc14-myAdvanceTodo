@@ -7,13 +7,9 @@ import { Spinner } from '../components/Common/Spinner';
 import Router from '../routes/Router';
 
 function App() {
-	// return <TodoPage />;
-	// return <LoginPage />;
-	// return <RegisterPage />
-	// return <ProfilePage />
-	// return <Spinner />
+	let isLogin = true;
 
-	return <Router/>
+	return <Router isAuth={isLogin} />;
 }
 //
 export default App;

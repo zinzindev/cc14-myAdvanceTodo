@@ -1,22 +1,22 @@
-import { Navigate } from 'react-router-dom';
-import TodoPage from '../pages/TodoPage';
-import ProfilePage from '../pages/ProfilePage';
+import { Navigate } from "react-router-dom";
+import TodoPage from "../pages/TodoPage";
+import ProfilePage from "../pages/ProfilePage";
 
 export const privateRoutes = [
     {
         path: '/todo',
-        element: <TodoPage />,
+        element: <TodoPage/>,
     },
     {
         path: '/profile',
-        element: <ProfilePage />,
+        element: <ProfilePage/>,
     },
     {
         path: '/profile/:userId',
-        element: <ProfilePage />,
+        element: <ProfilePage/>,
     },
     {
         path: '*',
-        element: <Navigate to='/todo' />,
+        element: <Navigate  to="/todo" />,
     },
 ];

@@ -1,18 +1,18 @@
-import { Navigate } from 'react-router-dom';
-import LoginPage from '../pages/LoginPage';
-import RegisterPage from '../pages/RegisterPage';
+import { Navigate } from "react-router-dom";
+import LoginPage from "../pages/LoginPage";
+import RegisterPage from "../pages/RegisterPage";
 
 export const publicRoutes = [
     {
         path: '/',
-        element: <LoginPage />,
+        element: <LoginPage/>,
     },
     {
         path: '/signup',
-        element: <RegisterPage />,
+        element: <RegisterPage/>,
     },
     {
         path: '*',
-        element: <Navigate to='/' />,
+        element: <Navigate  to="/" />,
     },
 ];
