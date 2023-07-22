@@ -6,13 +6,13 @@ import TodoContextProvider from '../contexts/TodoContext';
 
 function TodoPage() {
     return (
-        <TodoContextProvider>
-            <div className='container'>
-                <Header />
-                <SideBar />
-                <TodoContent />
-            </div>
-        </TodoContextProvider>
+            <TodoContextProvider>
+                <div className='container'>
+                    <Header />
+                    <SideBar />
+                    <TodoContent />
+                </div>
+            </TodoContextProvider>
     );
 }
 

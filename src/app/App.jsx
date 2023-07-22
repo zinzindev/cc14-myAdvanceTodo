@@ -1,15 +1,12 @@
 import './App.scss';
-import TodoPage from '../pages/TodoPage';
-import LoginPage from '../pages/LoginPage';
-import RegisterPage from '../pages/RegisterPage';
-import ProfilePage from '../pages/ProfilePage';
-import { Spinner } from '../components/Common/Spinner';
 import Router from '../routes/Router';
+import { useAuth } from '../hooks/useAuth';
 
 function App() {
-	let isLogin = true;
+	// let isLogin = true;
+	const {user,isAuth} = useAuth()
 
-	return <Router isAuth={isLogin} />;
+	return <Router isAuth={isAuth} />;
 }
 //
 export default App;
