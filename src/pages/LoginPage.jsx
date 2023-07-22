@@ -1,4 +1,5 @@
 import AuthPhoto from '../assets/auth.png'
+import { Link } from 'react-router-dom';
 
 function LoginPage() {
 	return (
@@ -38,9 +39,13 @@ function LoginPage() {
 						</p>
 						<p className='text-2xl text-gray-600'>
 							Don't have an account ?
-							<span className='hover:text-[#db4c3f] cursor-pointer font-bold'>
-								Go to sign up
-							</span>
+							<Link to='/signup'>
+								{/* <a href='/signup'> */}
+									<span className='hover:text-[#db4c3f] cursor-pointer font-bold'>
+										Go to sign up
+									</span>
+								{/* </a> */}
+							</Link>
 						</p>
 					</div>
 				</div>

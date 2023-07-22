@@ -43,7 +43,13 @@ export function Header() {
 
 			{/* Avatar */}
 			<div>
-				<Avatar alt='user-profile' src={UserPhoto} sx={{ width: 40, height: 40, cursor: 'pointer' }} />
+				<Link to='/profile'>
+					<Avatar
+						alt='user-profile'
+						src={UserPhoto}
+						sx={{ width: 40, height: 40, cursor: 'pointer' }}
+					/>
+				</Link>
 			</div>
 		</header>
 	);
